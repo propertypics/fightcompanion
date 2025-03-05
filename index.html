@@ -8,7 +8,6 @@
     <meta name="keywords" content="UFC tonight, who's fighting tonight, next UFC event, UFC 313, Pereira vs Ankalaev, UFC fight card, UFC schedule">
     <link rel="canonical" href="https://fightcompanion.net/events/ufc313">
     <style>
-        /* Google Font import */
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
         
         body {
@@ -155,6 +154,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative; /* For tooltip positioning */
         }
         .cell.vs {
             flex: 0.5;
@@ -173,49 +173,76 @@
         .odds.negative {
             color: #e74c3c;
         }
-        
+        /* Tooltip Styling */
+        .fighter-name {
+            cursor: pointer;
+        }
+        .fighter-name::after {
+            content: attr(data-record);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            z-index: 10;
+        }
+        .fighter-name:hover::after {
+            opacity: 1;
+        }
+        /* Dark mode adjustments for tooltip */
+        .dark-mode .fighter-name::after {
+            background-color: #555;
+            color: #f0f0f0;
+        }
+        /* Calendar Section */
+        .calendar-title {
+            margin: 0 0 10px 0;
+            text-align: center;
+            font-size: 17px;
+            line-height: 150%;
+            font-weight: bold;
+        }
         /* Dark mode specific styles */
         .dark-mode .countdown-timer {
             background-color: #2a2a2a;
         }
-        
         .dark-mode .row {
             border-bottom: 1px solid #333;
         }
-        
         .dark-mode .row:hover {
             background-color: rgba(178, 34, 34, 0.2);
         }
-        
         .dark-mode .row.main-event {
             background-color: rgba(178, 34, 34, 0.25);
         }
-        
         .dark-mode .header .row {
             background-color: #2a2a2a;
             border-bottom: 2px solid #555;
         }
-        
         .dark-mode .site-header span {
             color: #aaa;
         }
-        
         .dark-mode .event-date {
             color: #aaa;
         }
-        
         @media (max-width: 600px) {
             body {
                 margin: 20px;
             }
-            
             .theme-toggle {
                 top: 10px;
                 right: 10px;
                 padding: 6px 10px;
                 font-size: 0.8em;
             }
-            
             .container {
                 flex-direction: column;
             }
@@ -284,6 +311,11 @@
             .countdown-display {
                 font-size: 1.1em;
             }
+            .fighter-name::after {
+                bottom: auto;
+                top: 100%;
+                margin-top: 5px;
+            }
         }
     </style>
 </head>
@@ -316,60 +348,60 @@
                     <div class="row main-event">
                         <div class="cell weight-class">Light Heavyweight (Main Event)</div>
                         <div class="cell fighter-1">
-                            <span>Alex Pereira</span>
+                            <span class="fighter-name" data-record="W-W-W-W-L">Alex Pereira</span>
                             <span class="odds positive">+170</span>
                         </div>
                         <div class="cell vs">vs.</div>
                         <div class="cell fighter-2">
-                            <span>Magomed Ankalaev</span>
+                            <span class="fighter-name" data-record="W-NC-D-W-W">Magomed Ankalaev</span>
                             <span class="odds negative">-200</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="cell weight-class">Lightweight</div>
                         <div class="cell fighter-1">
-                            <span>Justin Gaethje</span>
+                            <span class="fighter-name" data-record="L-W-W-L-W">Justin Gaethje</span>
                             <span class="odds negative">-150</span>
                         </div>
                         <div class="cell vs">vs.</div>
                         <div class="cell fighter-2">
-                            <span>Rafael Fiziev</span>
+                            <span class="fighter-name" data-record="L-L-L-W-W">Rafael Fiziev</span>
                             <span class="odds positive">+130</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="cell weight-class">Women's Strawweight</div>
                         <div class="cell fighter-1">
-                            <span>Amanda Lemos</span>
+                            <span class="fighter-name" data-record="W-W-L-W-W">Amanda Lemos</span>
                             <span class="odds negative">-156</span>
                         </div>
                         <div class="cell vs">vs.</div>
                         <div class="cell fighter-2">
-                            <span>Iasmin Lucindo</span>
+                            <span class="fighter-name" data-record="W-W-W-W-L">Iasmin Lucindo</span>
                             <span class="odds positive">+136</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="cell weight-class">Lightweight</div>
                         <div class="cell fighter-1">
-                            <span>Jalin Turner</span>
+                            <span class="fighter-name" data-record="W-L-W-L-W">Jalin Turner</span>
                             <span class="odds negative">-210</span>
                         </div>
                         <div class="cell vs">vs.</div>
                         <div class="cell fighter-2">
-                            <span>Ignacio Bahamondes</span>
+                            <span class="fighter-name" data-record="W-L-W-W-L">Ignacio Bahamondes</span>
                             <span class="odds positive">+180</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="cell weight-class">Lightweight</div>
                         <div class="cell fighter-1">
-                            <span>King Green</span>
+                            <span class="fighter-name" data-record="W-L-W-L-W">King Green</span>
                             <span class="odds positive">+285</span>
                         </div>
                         <div class="cell vs">vs.</div>
                         <div class="cell fighter-2">
-                            <span>Mauricio Ruffy</span>
+                            <span class="fighter-name" data-record="W-W">Mauricio Ruffy</span>
                             <span class="odds negative">-350</span>
                         </div>
                     </div>
@@ -388,48 +420,48 @@
                     <div class="row">
                         <div class="cell weight-class">Heavyweight</div>
                         <div class="cell fighter-1">
-                            <span>Curtis Blaydes</span>
+                            <span class="fighter-name" data-record="L-W-L-W-W">Curtis Blaydes</span>
                             <span class="odds negative">-258</span>
                         </div>
                         <div class="cell vs">vs.</div>
                         <div class="cell fighter-2">
-                            <span>Rizvan Kuniev</span>
+                            <span class="fighter-name" data-record="N/A">Rizvan Kuniev</span>
                             <span class="odds positive">+218</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="cell weight-class">Flyweight</div>
                         <div class="cell fighter-1">
-                            <span>Joshua Van</span>
+                            <span class="fighter-name" data-record="W-W-W-L-W">Joshua Van</span>
                             <span class="odds negative">-170</span>
                         </div>
                         <div class="cell vs">vs.</div>
                         <div class="cell fighter-2">
-                            <span>Rei Tsuruya</span>
+                            <span class="fighter-name" data-record="W-W">Rei Tsuruya</span>
                             <span class="odds positive">+145</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="cell weight-class">Middleweight</div>
                         <div class="cell fighter-1">
-                            <span>Brunno Ferreira</span>
+                            <span class="fighter-name" data-record="W-W-L-W">Brunno Ferreira</span>
                             <span class="odds negative">-150</span>
                         </div>
                         <div class="cell vs">vs.</div>
                         <div class="cell fighter-2">
-                            <span>Armen Petrosyan</span>
+                            <span class="fighter-name" data-record="L-W-L-W-L">Armen Petrosyan</span>
                             <span class="odds positive">+130</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="cell weight-class">Welterweight</div>
                         <div class="cell fighter-1">
-                            <span>Alex Morono</span>
+                            <span class="fighter-name" data-record="W-L-W-L-W">Alex Morono</span>
                             <span class="odds positive">+350</span>
                         </div>
                         <div class="cell vs">vs.</div>
                         <div class="cell fighter-2">
-                            <span>Carlos Leal</span>
+                            <span class="fighter-name" data-record="W-W">Carlos Leal</span>
                             <span class="odds negative">-450</span>
                         </div>
                     </div>
@@ -448,31 +480,31 @@
                     <div class="row">
                         <div class="cell weight-class">Featherweight</div>
                         <div class="cell fighter-1">
-                            <span>Mairon Santos</span>
+                            <span class="fighter-name" data-record="W-W">Mairon Santos</span>
                             <span class="odds negative">-200</span>
                         </div>
                         <div class="cell vs">vs.</div>
                         <div class="cell fighter-2">
-                            <span>Francis Marshall</span>
+                            <span class="fighter-name" data-record="L-W-L-W-L">Francis Marshall</span>
                             <span class="odds positive">+170</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="cell weight-class">Middleweight</div>
                         <div class="cell fighter-1">
-                            <span>Djorden Santos</span>
+                            <span class="fighter-name" data-record="W">Djorden Santos</span>
                             <span class="odds positive">+130</span>
                         </div>
                         <div class="cell vs">vs.</div>
                         <div class="cell fighter-2">
-                            <span>Ozzy Diaz</span>
+                            <span class="fighter-name" data-record="W-L-W">Ozzy Diaz</span>
                             <span class="odds negative">-150</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Replaced Sidebar with New Calendar Section! -->
+            <!-- Calendar Section -->
             <div>
                 <p style="margin:0px 0px 10px 0px;text-align:center;font-size:17px;line-height:150%;color:#000;font-weight:bold;" class="calendar-title">Add event to calendar</p>
                 <p style="margin:0px 0px 10px 0px;text-align:center;font-size:0px;">
@@ -495,13 +527,10 @@
                         <img src="https://cdn.addevent.com/libs/imgs/icon-emd-share-yahoo-t1.png" alt="Yahoo" width="45" border="0" style="width:45px;display:inline;" />
                     </a>
                 </p>
-                <p style="margin:0;padding:25px 0px 0px 0px;text-align:center;">
-                </p>
+                <p style="margin:0;padding:25px 0px 0px 0px;text-align:center;"></p>
             </div>
         </div>
     </div>
-    
-    <!-- Schema.org structured data for SEO -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -535,38 +564,29 @@
       ]
     }
     </script>
-    
     <script>
-        // Countdown Timer
         function updateCountdown() {
             const eventDate = new Date("March 8, 2025 18:00:00 EST");
             const now = new Date();
             const diff = eventDate - now;
-            
             if (diff <= 0) {
                 document.getElementById("countdown").innerHTML = "Event In Progress!";
                 return;
             }
-            
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
             document.getElementById("countdown").innerHTML = 
                 `${days}d ${hours}h ${minutes}m ${seconds}s`;
         }
-        
         setInterval(updateCountdown, 1000);
         updateCountdown();
         
-        // Theme toggling
         document.addEventListener("DOMContentLoaded", function() {
             const themeToggle = document.getElementById("theme-toggle");
             const body = document.body;
             const calendarTitle = document.querySelector(".calendar-title");
-            
-            // Check if user has a preference saved
             const currentTheme = localStorage.getItem("theme");
             if (currentTheme === "dark") {
                 body.classList.remove("light-mode");
@@ -574,7 +594,6 @@
                 themeToggle.textContent = "Light Mode";
                 if (calendarTitle) calendarTitle.style.color = "#f0f0f0";
             }
-            
             themeToggle.addEventListener("click", function() {
                 if (body.classList.contains("dark-mode")) {
                     body.classList.remove("dark-mode");
