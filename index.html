@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,6 +29,21 @@
             color: #f0f0f0;
         }
         
+       .fight-canceled .fighter-name,
+       .fight-canceled .odds {
+       text-decoration: line-through;
+       opacity: 0.7;
+}
+
+.cancellation-notice {
+    color: #b22222;
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-top: 2px;
+    display: block;
+    text-decoration: none !important;
+    opacity: 1 !important;
+}
         .theme-toggle {
             position: fixed;
             top: 20px;
@@ -332,6 +348,21 @@
                 </div>
 
                 <!-- Main Card Section -->
+       <div class="row fight-canceled">
+    <div class="cell weight-class">Middleweight</div>
+    <div class="cell fighter-1">
+        <span class="fighter-name" data-record="20-9-0">Kelvin Gastelum</span>
+        <span class="odds"></span>
+    </div>
+    <div class="cell vs">vs.</div>
+    <div class="cell fighter-2">
+        <span class="fighter-name" data-record="13-3-0">Joe Pyfer</span>
+        <span class="odds"></span>
+    </div>
+    <div class="cell">
+        <span class="cancellation-notice">Canceled due to illness</span>
+    </div>
+</div>
                 
         <div class="section">
             <h2>Main Card</h2>
@@ -634,3 +665,4 @@
     </script>
 </body>
 </html>
+
