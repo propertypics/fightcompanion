@@ -28,6 +28,22 @@
             color: #f0f0f0;
         }
         
+        .fight-canceled .fighter-name,
+        .fight-canceled .odds {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .cancellation-notice {
+            color: #b22222;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-top: 2px;
+            display: block;
+            text-decoration: none !important;
+            opacity: 1 !important;
+        }
+        
         .theme-toggle {
             position: fixed;
             top: 20px;
@@ -384,19 +400,6 @@
             </div>
             
             <div class="row ">
-                <div class="cell weight-class">Heavyweight </div>
-                <div class="cell fighter-1">
-                    <span class="fighter-name" data-record="14-5-0">Kennedy Nzechukwu</span>
-                    <span class="odds"></span>
-                </div>
-                <div class="cell vs">vs.</div>
-                <div class="cell fighter-2">
-                    <span class="fighter-name" data-record="14-2-0">Martin Buday</span>
-                    <span class="odds"></span>
-                </div>
-            </div>
-            
-            <div class="row ">
                 <div class="cell weight-class">Middleweight </div>
                 <div class="cell fighter-1">
                     <span class="fighter-name" data-record="20-11-0">Brad Tavares</span>
@@ -405,6 +408,19 @@
                 <div class="cell vs">vs.</div>
                 <div class="cell fighter-2">
                     <span class="fighter-name" data-record="37-18-0">Gerald Meerschaert</span>
+                    <span class="odds"></span>
+                </div>
+            </div>
+            
+            <div class="row ">
+                <div class="cell weight-class">Flyweight </div>
+                <div class="cell fighter-1">
+                    <span class="fighter-name" data-record="12-8-0">Ode' Osbourne</span>
+                    <span class="odds"></span>
+                </div>
+                <div class="cell vs">vs.</div>
+                <div class="cell fighter-2">
+                    <span class="fighter-name" data-record="10-0-0">Luis Gurule</span>
                     <span class="odds"></span>
                 </div>
             </div>
@@ -436,29 +452,19 @@
                 </div>
             </div>
         
-            <div class="row ">
-                <div class="cell weight-class">Flyweight </div>
+            <div class="row fight-canceled">
+                <div class="cell weight-class">Bantamweight</div>
                 <div class="cell fighter-1">
-                    <span class="fighter-name" data-record="12-8-0">Ode' Osbourne</span>
+                    <span class="fighter-name" data-record="14-5-0">Davey Grant</span>
                     <span class="odds"></span>
                 </div>
                 <div class="cell vs">vs.</div>
                 <div class="cell fighter-2">
-                    <span class="fighter-name" data-record="10-0-0">Luis Gurule</span>
+                    <span class="fighter-name" data-record="11-2-0">Lucas Santos</span>
                     <span class="odds"></span>
                 </div>
-            </div>
-            
-            <div class="row ">
-                <div class="cell weight-class">Bantamweight </div>
-                <div class="cell fighter-1">
-                    <span class="fighter-name" data-record="16-7-0">Davey Grant</span>
-                    <span class="odds"></span>
-                </div>
-                <div class="cell vs">vs.</div>
-                <div class="cell fighter-2">
-                    <span class="fighter-name" data-record="12-2-0">Daniel Santos</span>
-                    <span class="odds"></span>
+                <div class="cell">
+                    <span class="cancellation-notice">Canceled due to Santos missing weight</span>
                 </div>
             </div>
             
@@ -489,6 +495,19 @@
             </div>
             
             <div class="row ">
+                <div class="cell weight-class">Women's Strawweight </div>
+                <div class="cell fighter-1">
+                    <span class="fighter-name" data-record="9-3-0">Loma Lookboonmee</span>
+                    <span class="odds"></span>
+                </div>
+                <div class="cell vs">vs.</div>
+                <div class="cell fighter-2">
+                    <span class="fighter-name" data-record="6-5-0">Istela Nunes</span>
+                    <span class="odds"></span>
+                </div>
+            </div>
+            
+            <div class="row ">
                 <div class="cell weight-class">Bantamweight </div>
                 <div class="cell fighter-1">
                     <span class="fighter-name" data-record="24-7-0">Victor Henry</span>
@@ -502,6 +521,19 @@
             </div>
             
             <div class="row ">
+                <div class="cell weight-class">Heavyweight </div>
+                <div class="cell fighter-1">
+                    <span class="fighter-name" data-record="14-2-0">Martin Buday</span>
+                    <span class="odds"></span>
+                </div>
+                <div class="cell vs">vs.</div>
+                <div class="cell fighter-2">
+                    <span class="fighter-name" data-record="9-0-0">Uran Satybaldiev</span>
+                    <span class="odds"></span>
+                </div>
+            </div>
+            
+            <div class="row ">
                 <div class="cell weight-class">Women's Strawweight </div>
                 <div class="cell fighter-1">
                     <span class="fighter-name" data-record="11-6-0">Vanessa Demopoulos</span>
@@ -510,19 +542,6 @@
                 <div class="cell vs">vs.</div>
                 <div class="cell fighter-2">
                     <span class="fighter-name" data-record="5-1-1">Talita Alencar</span>
-                    <span class="odds"></span>
-                </div>
-            </div>
-            
-            <div class="row ">
-                <div class="cell weight-class">Women's Strawweight </div>
-                <div class="cell fighter-1">
-                    <span class="fighter-name" data-record="9-3-0">Loma Lookboonmee</span>
-                    <span class="odds"></span>
-                </div>
-                <div class="cell vs">vs.</div>
-                <div class="cell fighter-2">
-                    <span class="fighter-name" data-record="6-5-0">Istela Nunes</span>
                     <span class="odds"></span>
                 </div>
             </div>
