@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who's Fighting Tonight | UFC 314: Volkanovski vs. Lopes | FightCompanion.net | FightCompanion.net</title>
+    <meta name="description" content="Find out who's fighting tonight in UFC 314: Volkanovski vs. Lopes, upcoming UFC events, fight cards, and betting odds. Live updates and fight schedules at FightCompanion.net">
+    <meta name="keywords" content="UFC tonight, who's fighting tonight, next UFC event, UFC Fight Night, Lopes, UFC fight card, UFC schedule">
+    <link rel="canonical" href="https://fightcompanion.net/events/ufc-fight-night-april-12-2025">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+        
+        body {
+            position: relative;
+            font-family: 'Roboto Condensed', sans-serif;
+            margin: 20px 80px;
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        body.light-mode {
+            background-color: #fff;
+            color: #000;
+        }
+        
+        body.dark-mode {
+            background-color: #121212;
+            color: #f0f0f0;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #b22222;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 12px;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 0.9em;
+            cursor: pointer;
+            z-index: 100;
+            transition: background-color 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            background-color: #8b0000;
+        }
+        
+        .page-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            display: flex;
+            max-width: 900px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+        .fight-card {
+            flex: 3;
+            position: relative;
+        }
+        .site-header {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #b22222;
+            width: auto;
+            text-align: left;
+            white-space: normal;
+        }
+        .site-header span {
+            font-size: 0.8em;
+            font-weight: normal;
+            color: #555;
+            display: block;
+            margin-left: 0;
+        }
+        h1 {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-align: center;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .event-date {
+            font-size: 0.9em;
+            color: #555;
+            text-align: center;
+            margin: 0 0 10px;
+        }
+        .countdown-timer {
+            text-align: center;
+            margin: 15px 0;
+            background-color: #f5f5f5;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .countdown-title {
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #b22222;
+            margin-bottom: 5px;
+        }
+        .countdown-display {
+            font-size: 1.2em;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        h2 {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin: 15px 0 8px;
+            text-align: center;
+        }
+        .section {
+            margin-bottom: 15px;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            padding: 6px 0;
+            transition: background-color 0.2s ease;
+        }
+        .row:hover {
+            background-color: rgba(178, 34, 34, 0.05);
+        }
+        .row.main-event {
+            background-color: rgba(178, 34, 34, 0.1);
+            border-bottom: 2px solid #b22222;
+            padding: 10px 0;
+            font-weight: bold;
+        }
+        .header .row {
+            font-weight: bold;
+            background-color: #f5f5f5;
+            border-bottom: 2px solid #ccc;
+        }
+        .cell {
+            flex: 1;
+            padding: 0 8px;
+        }
+        .cell.weight-class { flex: 1.2; }
+        .cell.fighter-1, .cell.fighter-2 {
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        .cell.vs {
+            flex: 0.5;
+            text-align: center;
+            font-weight: bold;
+            color: #b22222;
+        }
+        .odds {
+            font-size: 0.85em;
+            margin-top: 2px;
+            font-weight: bold;
+        }
+        .odds.positive {
+            color: #2ecc71;
+        }
+        .odds.negative {
+            color: #e74c3c;
+        }
+        .fighter-name {
+            cursor: pointer;
+        }
+        .fighter-name::after {
+            content: attr(data-record);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            z-index: 10;
+        }
+        .fighter-name:hover::after {
+            opacity: 1;
+        }
+        .dark-mode .fighter-name::after {
+            background-color: #555;
+            color: #f0f0f0;
+        }
+        .calendar-title {
+            margin: 0 0 10px 0;
+            text-align: center;
+            font-size: 17px;
+            line-height: 150%;
+            font-weight: bold;
+        }
+        .dark-mode .countdown-timer {
+            background-color: #2a2a2a;
+        }
+        .dark-mode .row {
+            border-bottom: 1px solid #333;
+        }
+        .dark-mode .row:hover {
+            background-color: rgba(178, 34, 34, 0.2);
+        }
+        .dark-mode .row.main-event {
+            background-color: rgba(178, 34, 34, 0.25);
+        }
+        .dark-mode .header .row {
+            background-color: #2a2a2a;
+            border-bottom: 2px solid #555;
+        }
+        .dark-mode .site-header span {
+            color: #aaa;
+        }
+        .dark-mode .event-date {
+            color: #aaa;
+        }
+        @media (max-width: 600px) {
+            body {
+                margin: 20px;
+            }
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 6px 10px;
+                font-size: 0.8em;
+            }
+            .container {
+                flex-direction: column;
+            }
+            .row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-areas:
+                    "weight weight"
+                    "fighter1 fighter2"
+                    "vs vs";
+                text-align: center;
+                padding: 8px 0;
+            }
+            .row.main-event {
+                background-color: rgba(178, 34, 34, 0.1);
+                border-radius: 4px;
+                padding: 12px 8px;
+                margin-bottom: 8px;
+            }
+            .cell.weight-class {
+                grid-area: weight;
+                font-weight: bold;
+                margin-bottom: 8px;
+                padding: 4px;
+                background: rgba(0,0,0,0.05);
+                border-radius: 3px;
+            }
+            .dark-mode .cell.weight-class {
+                background: rgba(255,255,255,0.1);
+            }
+            .cell.fighter-1 {
+                grid-area: fighter1;
+                padding: 8px 4px;
+            }
+            .cell.fighter-2 {
+                grid-area: fighter2;
+                padding: 8px 4px;
+            }
+            .cell.vs {
+                grid-area: vs;
+                margin: 5px 0;
+            }
+            .cell.fighter-1, .cell.fighter-2 {
+                align-items: center;
+            }
+            .site-header {
+                position: static;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 15px;
+            }
+            h1 {
+                margin-top: 0;
+                font-size: 1.3em;
+            }
+            .section h2 {
+                background: #b22222;
+                color: white;
+                padding: 8px;
+                border-radius: 4px;
+                margin: 15px 0 10px;
+            }
+            .header .row {
+                display: none;
+            }
+            .countdown-display {
+                font-size: 1.1em;
+            }
+            .fighter-name::after {
+                bottom: auto;
+                top: 100%;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <button class="theme-toggle" id="theme-toggle">Dark Mode</button>
+    <div class="page-wrapper">
+        <div class="site-header">
+            fightcompanion.net
+            <span>Track the Octagon</span>
+        </div>
+        <div class="container">
+            <div class="fight-card">
+                <h1>UFC 314: Volkanovski vs. Lopes - Fight Card</h1>
+                <p class="event-date">April 12, 2025 - Kaseya Center, Miami, FL</p>
+                <div class="countdown-timer">
+                    <div class="countdown-title">Event Starts In:</div>
+                    <div class="countdown-display" id="countdown"></div>
+                </div>
+
+                <!-- Main Card Section -->
+                
+        <div class="section">
+            <h2>Main Card</h2>
+            <div class="header">
+                <div class="row">
+                    <div class="cell weight-class">Weight Class</div>
+                    <div class="cell fighter-1">Fighter 1</div>
+                    <div class="cell vs"></div>
+                    <div class="cell fighter-2">Fighter 2</div>
+                </div>
+            </div>
+        
+            <div class="row main-event">
+                <div class="cell weight-class">Featherweight - Main Event - Title Fight (Main Event)</div>
+                <div class="cell fighter-1">
+                    <span class="fighter-name" data-record="26-4-0">Alexander Volkanovski</span>
+                    <span class="odds"></span>
+                </div>
+                <div class="cell vs">vs.</div>
+                <div class="cell fighter-2">
+                    <span class="fighter-name" data-record="26-6-0">Diego Lopes</span>
+                    <span class="odds"></span>
+                </div>
+            </div>
+            
+            <div class="row ">
+                <div class="cell weight-class">Lightweight </div>
+                <div class="cell fighter-1">
+                    <span class="fighter-name" data-record="23-9-0">Michael Chandler</span>
+                    <span class="odds"></span>
+                </div>
+                <div class="cell vs">vs.</div>
+                <div class="cell fighter-2">
+                    <span class="fighter-name" data-record="22-3-0">Paddy Pimblett</span>
+                    <span class="odds"></span>
+                </div>
+            </div>
+            
+            <div class="row ">
+                <div class="cell weight-class">Featherweight </div>
+                <div class="cell fighter-1">
+                    <span class="fighter-name" data-record="17-3-0">Bryce Mitchell</span>
+                    <span class="odds"></span>
+                </div>
+                <div class="cell vs">vs.</div>
+                <div class="cell fighter-2">
+                    <span class="fighter-name" data-record="15-2-0">Jean Silva</span>
+                    <span class="odds"></span>
+                </div>
+            </div>
+            
+            <div class="row ">
+                <div class="cell weight-class">Featherweight </div>
+                <div class="cell fighter-1">
+                    <span class="fighter-name" data-record="20-5-0">Yair Rodriguez</span>
+                    <span class="odds"></span>
+                </div>
+                <div class="cell vs">vs.</div>
+                <div class="cell fighter-2">
+                    <span class="fighter-name" data-record="36-7-0">Patricio Pitbull</span>
+                    <span class="odds"></span>
+                </div>
+            </div>
+            
+            <div class="row ">
+                <div class="cell weight-class">Light Heavyweight </div>
+                <div class="cell fighter-1">
+                    <span class="fighter-name" data-record="30-9-0">Nikita Krylov</span>
+                    <span class="odds"></span>
+                </div>
+                <div class="cell vs">vs.</div>
+                <div class="cell fighter-2">
+                    <span class="fighter-name" data-record="14-4-0">Dominick Reyes</span>
+                    <span class="odds"></span>
+                </div>
+            </div>
+            
+            <div class="row ">
+                <div class="cell weight-class">Featherweight </div>
+                <div class="cell fighter-1">
+                    <span class="fighter-name" data-record="18-9-0">Dan Ige</span>
+                    <span class="odds"></span>
+                </div>
+                <div class="cell vs">vs.</div>
+                <div class="cell fighter-2">
+                    <span class="fighter-name" data-record="13-1-1">Sean Woodson</span>
+                    <span class="odds"></span>
+                </div>
+            </div>
+            </div>
+
+                <!-- Preliminary Card Section -->
+                
+        <div class="section">
+            <h2>Preliminary Card</h2>
+            <div class="header">
+                <div class="row">
+                    <div class="cell weight-class">Weight Class</div>
+                    <div class="cell fighter-1">Fighter 1</div>
+                    <div class="cell vs"></div>
+                    <div class="cell fighter-2">Fighter 2</div>
+                </div>
+            </div>
+        
+            <div class="row ">
+                <div class="cell weight-class">Women's Strawweight </div>
+                <div class="cell fighter-1">
+                    <span class="fighter-name" data-record="19-4-0">Yan Xiaonan</span>
+                    <span class="odds"></span>
+                </div>
+                <div class="cell vs">vs.</div>
+                <div class="cell fighter-2">
+                    <span class="fighter-name" data-record="21-3-0">Virna Jandiroba</span>
+                    <span class="odds"></span>
+                </div>
+            </div>
+            
+            <div class="row ">
+                <div class="cell weight-class">Lightweight </div>
+                <div class="cell fighter-1">
+                    <span class="fighter-name" data-record="38-18-0">Jim Miller</span>
+                    <span class="odds"></span>
+                </div>
+                <div class="cell vs">vs.</div>
+                <div class="cell fighter-2">
+                    <span class="fighter-name" data-record="15-3-1">Chase Hooper</span>
+                    <span class="odds"></span>
+                </div>
+            </div>
+            
+            <div class="row ">
+                <div class="cell weight-class">Featherweight </div>
+                <div class="cell fighter-1">
+                    <span class="fighter-name" data-record="29-11-0">Darren Elkins</span>
+                    <span class="odds"></span>
+                </div>
+                <div class="cell vs">vs.</div>
+                <div class="cell fighter-2">
+                    <span class="fighter-name" data-record="30-12-0">Julian Erosa</span>
+                    <span class="odds"></span>
+                </div>
+            </div>
+            
+            <div class="row ">
+                <div class="cell weight-class">Middleweight </div>
+                <div class="cell fighter-1">
+                    <span class="fighter-name" data-record="10-2-0">Sedriques Dumas</span>
+                    <span class="odds"></span>
+                </div>
+                <div class="cell vs">vs.</div>
+                <div class="cell fighter-2">
+                    <span class="fighter-name" data-record="19-9-0">Michal Oleksiejczuk</span>
+                    <span class="odds"></span>
+                </div>
+            </div>
+            
+            <div class="row ">
+                <div class="cell weight-class">Flyweight </div>
+                <div class="cell fighter-1">
+                    <span class="fighter-name" data-record="16-7-0">Sumudaerji</span>
+                    <span class="odds"></span>
+                </div>
+                <div class="cell vs">vs.</div>
+                <div class="cell fighter-2">
+                    <span class="fighter-name" data-record="9-2-0">Mitch Raposo</span>
+                    <span class="odds"></span>
+                </div>
+            </div>
+            
+            <div class="row ">
+                <div class="cell weight-class">Middleweight </div>
+                <div class="cell fighter-1">
+                    <span class="fighter-name" data-record="6-2-0">Tresean Gore</span>
+                    <span class="odds"></span>
+                </div>
+                <div class="cell vs">vs.</div>
+                <div class="cell fighter-2">
+                    <span class="fighter-name" data-record="13-1-0">Marco Tulio</span>
+                    <span class="odds"></span>
+                </div>
+            </div>
+            
+            <div class="row ">
+                <div class="cell weight-class">Women's Bantamweight </div>
+                <div class="cell fighter-1">
+                    <span class="fighter-name" data-record="8-2-0">Nora Cornolle</span>
+                    <span class="odds"></span>
+                </div>
+                <div class="cell vs">vs.</div>
+                <div class="cell fighter-2">
+                    <span class="fighter-name" data-record="7-3-0">Hailey Cowan</span>
+                    <span class="odds"></span>
+                </div>
+            </div>
+            </div>
+            </div>
+
+            <div>
+                <!-- Calendar Links Section -->
+                
+        <p style="margin:0px 0px 10px 0px;text-align:center;font-size:17px;line-height:150%;font-weight:bold;">Add event to calendar</p>
+        <p style="margin:0px 0px 10px 0px;text-align:center;font-size:0px;">
+        
+            <a href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20250412T190000%0ADTEND:20250412T220000%0ASUMMARY:UFC%20314%3A%20Volkanovski%20vs.%20Lopes%0ADESCRIPTION:Brought%20to%20you%20by%20FightCompanion.net%0ALOCATION:Kaseya%20Center%2C%20Miami%2C%20FL%0AEND:VEVENT%0AEND:VCALENDAR" title="Apple" target="_blank" style="display:inline;">
+                <img src="/icons/apple-icon.png" alt="Apple" width="45" border="0" style="width:45px;display:inline;" />
+            </a>
+            
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=UFC%20314%3A%20Volkanovski%20vs.%20Lopes&dates=20250412T190000/20250412T220000&details=Brought%20to%20you%20by%20FightCompanion.net&location=Kaseya%20Center%2C%20Miami%2C%20FL" title="Google" target="_blank" style="display:inline;">
+                <img src="/icons/google-icon.png" alt="Google" width="45" border="0" style="width:45px;display:inline;" />
+            </a>
+            
+            <a href="https://outlook.office.com/calendar/action/compose?subject=UFC%20314%3A%20Volkanovski%20vs.%20Lopes&startdt=2025-04-12T19:00:00&enddt=2025-04-12T22:00:00&body=Brought%20to%20you%20by%20FightCompanion.net&location=Kaseya%20Center%2C%20Miami%2C%20FL" title="Office 365" target="_blank" style="display:inline;">
+                <img src="/icons/office365-icon.png" alt="Office 365" width="45" border="0" style="width:45px;display:inline;" />
+            </a>
+            
+            <a href="https://outlook.live.com/calendar/0/deeplink/compose?subject=UFC%20314%3A%20Volkanovski%20vs.%20Lopes&startdt=2025-04-12T19:00:00&enddt=2025-04-12T22:00:00&body=Brought%20to%20you%20by%20FightCompanion.net&location=Kaseya%20Center%2C%20Miami%2C%20FL" title="Outlook" target="_blank" style="display:inline;">
+                <img src="/icons/outlook-icon.png" alt="Outlook" width="45" border="0" style="width:45px;display:inline;" />
+            </a>
+            
+            <a href="https://outlook.live.com/calendar/0/action/compose?subject=UFC%20314%3A%20Volkanovski%20vs.%20Lopes&startdt=2025-04-12T19:00:00&enddt=2025-04-12T22:00:00&body=Brought%20to%20you%20by%20FightCompanion.net&location=Kaseya%20Center%2C%20Miami%2C%20FL" title="Outlook.com" target="_blank" style="display:inline;">
+                <img src="/icons/outlookcom-icon.png" alt="Outlook.com" width="45" border="0" style="width:45px;display:inline;" />
+            </a>
+            
+            <a href="https://calendar.yahoo.com/?v=60&title=UFC%20314%3A%20Volkanovski%20vs.%20Lopes&st=20250412T190000&et=20250412T220000&desc=Brought%20to%20you%20by%20FightCompanion.net&in_loc=Kaseya%20Center%2C%20Miami%2C%20FL" title="Yahoo" target="_blank">
+                <img src="/icons/yahoo-icon.png" alt="Yahoo" width="45" border="0" style="width:45px;display:inline;" />
+            </a>
+            
+        </p>
+        <p style="margin:0;padding:25px 0px 0px 0px;text-align:center;">
+        </p>
+        
+            </div>
+        </div>
+    </div>
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "SportsEvent",
+  "name": "UFC 314: Volkanovski vs. Lopes",
+  "startDate": "2025-04-12T19:00:00+00:00",
+  "location": {
+    "@type": "Place",
+    "name": "Kaseya Center",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Miami",
+      "addressCountry": "FL"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "Ultimate Fighting Championship",
+    "url": "https://www.ufc.com"
+  },
+  "competitor": [
+    {
+      "@type": "Person",
+      "name": "Alexander Volkanovski"
+    },
+    {
+      "@type": "Person",
+      "name": "Diego Lopes"
+    }
+  ]
+}
+    </script>
+    <script>
+        function updateCountdown() {
+            const eventDate = new Date("April 12, 2025 13:00:00 PDT");
+            const now = new Date();
+            const diff = eventDate - now;
+            if (diff <= 0) {
+                document.getElementById("countdown").innerHTML = "Event In Progress!";
+                return;
+            }
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById("countdown").innerHTML = 
+                `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            const themeToggle = document.getElementById("theme-toggle");
+            const body = document.body;
+            const calendarTitle = document.querySelector(".calendar-title");
+            const currentTheme = localStorage.getItem("theme");
+            if (currentTheme === "dark") {
+                body.classList.remove("light-mode");
+                body.classList.add("dark-mode");
+                themeToggle.textContent = "Light Mode";
+                if (calendarTitle) calendarTitle.style.color = "#f0f0f0";
+            }
+            themeToggle.addEventListener("click", function() {
+                if (body.classList.contains("dark-mode")) {
+                    body.classList.remove("dark-mode");
+                    body.classList.add("light-mode");
+                    themeToggle.textContent = "Dark Mode";
+                    if (calendarTitle) calendarTitle.style.color = "#000";
+                    localStorage.setItem("theme", "light");
+                } else {
+                    body.classList.remove("light-mode");
+                    body.classList.add("dark-mode");
+                    themeToggle.textContent = "Light Mode";
+                    if (calendarTitle) calendarTitle.style.color = "#f0f0f0";
+                    localStorage.setItem("theme", "dark");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
